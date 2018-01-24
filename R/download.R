@@ -50,7 +50,7 @@ ft_download_model <- function(lang = "en", mb = 500) {
   z <- z[-nrow(z),]
 
   # Download the rotation vector for the given language
-  base_url <- paste("https://raw.githubusercontent.com/statsmaths",
+  base_url <- paste("https://raw.githubusercontent.com/Babylonpartners",
                     "/fastText_multilingual",
                     "/master/alignment_matrices", sep = "")
   url <- sprintf("%s/%s.txt", base_url, lang)
