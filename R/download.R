@@ -38,7 +38,7 @@ ft_download_model <- function(lang = "en", mb = 500) {
   if (is.finite(mb)) {
     curl::handle_setopt(h, range = sprintf("0-%d000000", mb))
   } # otherwise, download the whole file
-  base_url <- "https://s3-us-west-1.amazonaws.com/fasttext-vectors"
+  base_url <- "https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.en.vec"
   url <- sprintf("%s/wiki.%s.vec", base_url, lang)
   r <- curl::curl_fetch_memory(url, h)
 
