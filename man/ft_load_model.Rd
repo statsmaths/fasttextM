@@ -4,7 +4,7 @@
 \alias{ft_load_model}
 \title{Load Fasttext Model Files}
 \usage{
-ft_load_model(lang = "en")
+ft_load_model(lang = "en", location = NULL)
 }
 \arguments{
 \item{lang}{the two letter language code
@@ -12,6 +12,9 @@ specifying the language you would
 like to download. See the function
 \code{\link{ft_languages}} for a
 complete list of available choices.}
+
+\item{location}{Path to directory where models should be saved. Defaults
+to the directory where the package is installed.}
 }
 \description{
 Loads the model files into memory for the specified

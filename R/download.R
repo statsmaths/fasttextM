@@ -20,6 +20,9 @@
 #'                    Set to \code{Inf} to get all rows.
 #'                    This is a 6GB file.
 #'
+#' @param  location   Path to directory where models should be saved. Defaults
+#'                    to the directory where the package is installed.
+#'
 #' @return Invisibly returns the status code of the download.
 #'        The embedding matrix is stored on disk.
 #'
@@ -31,7 +34,7 @@
 #'}
 #'
 #' @export
-ft_download_model <- function(lang = "en", mb = 500) {
+ft_download_model <- function(lang = "en", mb = 500, location = NULL) {
 
   # Download the fasttext model first
   h <- curl::new_handle()
@@ -64,8 +67,15 @@ ft_download_model <- function(lang = "en", mb = 500) {
   z <- z %*% rotation
 
   # Save the model
-  output_location <- system.file("extdata", package="fasttextM")
-  saveRDS(z, sprintf("%s/%s.Rds", output_location, lang))
+  if (is.null(location))
+  {
+    location <- system.file("extdata", package="fasttextM")
+  }
+  if (!dir.exists(location))
+  {
+    dir.create(location, recursive = TRUE)
+  }
+  saveRDS(z, sprintf("%s/%s.Rds", location, lang))
 
   # Invisibly status code of the (first) call to curl
   invisible(r$status_code)

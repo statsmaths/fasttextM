@@ -1,7 +1,7 @@
 Package: fasttextM
 Type: Package
 Title: Fast Multilingual Word Embeddings
-Version: 0.2
+Version: 0.2.1
 Authors@R: c(person(given = "Taylor B.", family = "Arnold", email = "taylor.arnold@acm.org", role = c("aut", "cre")), person(given = "Nicolas", family = "Bailler", email = "nicolas.ballier@univparis-diderot.fr", role = c("aut")), person(given = "Paula", family = "Liss\'{o}n", email = "paula.lisson@etu.univparis-diderot.fr", role = c("aut")))
 Maintainer: Taylor B. Arnold <taylor.arnold@acm.org>
 Description: Provides a set of tools for downloading and applying the fasttext word embeddings. All embeddings are fit in-memory for speed. The resulting embeddings can be used for supervised and unsupervised learning over a text-based corpus. Embeddings are consistent across languages, so similar words in different language should get mapped to similar vectors in the output space.
@@ -16,4 +16,4 @@ License: LGPL-2
 URL: http://github.com/statsmaths/fasttextM/ 
 BugReports: http://github.com/statsmaths/fasttextM/issues
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 7.0.2

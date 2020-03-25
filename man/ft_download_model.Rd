@@ -4,7 +4,7 @@
 \alias{ft_download_model}
 \title{Download Fasttext Model Files}
 \usage{
-ft_download_model(lang = "en", mb = 500)
+ft_download_model(lang = "en", mb = 500, location = NULL)
 }
 \arguments{
 \item{lang}{the two letter language code
@@ -18,6 +18,9 @@ from the file. The default (500) gets
 around 200k rows. Adjust as needed.
 Set to \code{Inf} to get all rows.
 This is a 6GB file.}
+
+\item{location}{Path to directory where models should be saved. Defaults
+to the directory where the package is installed.}
 }
 \value{
 Invisibly returns the status code of the download.

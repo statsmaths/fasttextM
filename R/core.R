@@ -3,6 +3,9 @@
 #' This function prints a data frame of the available languages,
 #' language codes, and which ones are alread downloaded.
 #'
+#' @param  location   Path to directory where models should be saved. Defaults
+#'                    to the directory where the package is installed.
+#'
 #' @return A data frame of available languages, along with
 #'         information about which ones are already downloaded.
 #'
@@ -13,15 +16,21 @@
 #'ft_languages()
 #'
 #' @export
-ft_languages <- function() {
+ft_languages <- function(location = NULL) {
 
-  output_location <- system.file("extdata", package="fasttextM")
-  fname <- sprintf("%s/language_codes.csv", output_location)
+  fname <- sprintf(
+    "%s/language_codes.csv",
+    system.file("extdata", package="fasttextM")
+  )
   meta <- utils::read.csv(fname, as.is = TRUE)
   meta$installed <- ""
   meta$loaded <- ""
 
-  i_langs <- substr(dir(output_location, pattern = ".Rds$"), 1, 2)
+  if (is.null(location))
+  {
+    location <- system.file("extdata", package="fasttextM")
+  }
+  i_langs <- substr(dir(location, pattern = ".Rds$"), 1, 2)
   l_langs <- names(volatiles)
 
   meta$installed[!is.na(match(meta$iso_code, i_langs))] <- "*"
@@ -42,16 +51,23 @@ ft_languages <- function() {
 #'                    \code{\link{ft_languages}} for a
 #'                    complete list of available choices.
 #'
+#' @param  location   Path to directory where models should be saved. Defaults
+#'                    to the directory where the package is installed.
+#'
 #' @author Taylor B. Arnold, \email{taylor.arnold@@acm.org}
 #'
 #' @examples
 #'ft_load_model(lang = "en")
 #'
 #' @export
-ft_load_model <- function(lang = "en") {
+ft_load_model <- function(lang = "en", location = NULL) {
 
-  output_location <- system.file("extdata", package="fasttextM")
-  fname <- sprintf("%s/%s.Rds", output_location, lang)
+  if (is.null(location))
+  {
+    location <- system.file("extdata", package="fasttextM")
+  }
+
+  fname <- sprintf("%s/%s.Rds", location, lang)
   volatiles[[lang]] <- readRDS(fname)
 
   invisible(0L)
@@ -173,8 +189,3 @@ ft_nn <- function(words, lang = "en", lang_out = lang, nn = 10L) {
 
   return(output)
 }
-
-
-
-
-

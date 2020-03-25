@@ -4,7 +4,11 @@
 \alias{ft_languages}
 \title{Available Languages}
 \usage{
-ft_languages()
+ft_languages(location = NULL)
+}
+\arguments{
+\item{location}{Path to directory where models should be saved. Defaults
+to the directory where the package is installed.}
 }
 \value{
 A data frame of available languages, along with
